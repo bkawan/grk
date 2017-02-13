@@ -17,6 +17,8 @@ class Tag(models.Model):
 class Book(models.Model):
     title = models.CharField(max_length=255)
     thumbnail = models.ImageField(upload_to='thumbnail', blank=True, null=True)
+    description = models.TextField()
+    isbn = models.PositiveIntegerField(unique=True)
     category = models.ForeignKey(Category, blank=True, null=True)
     tags = models.ManyToManyField(Tag, blank=True, null=True)
     author = models.ForeignKey(Author, related_name='books')
