@@ -1,8 +1,17 @@
 from django.db import models
 
 
+class Genre(models.Model):
+    name = models.CharField(max_length=250)
+
+
 class Author(models.Model):
     name = models.CharField(max_length=250)
+    genre = models.ManyToManyField(Genre, blank=True, null=True)
+    website = models.URLField(blank=True, null=True)
+    info = models.TextField(blank=True, null=True)
+    date_of_birth = models.DateField(blank=True, null=True)
+    decease_date = models.DateField(blank=True, null=True)
     avatar = models.ImageField(upload_to='avatar/', blank=True, null=True)
 
 
