@@ -37,7 +37,6 @@ class Book(models.Model):
     isbn_13 = models.PositiveIntegerField(unique=True)
     number_of_pages = models.IntegerField()
     weight = models.IntegerField()
-    language = models.CharField(max_length=250, blank=True, null=True)
     oclc_number = models.IntegerField()
     physical_dimensions = models.CharField(max_length=100,blank=True, null=True)
     revision = models.IntegerField()
@@ -48,6 +47,11 @@ class Book(models.Model):
     category = models.ForeignKey(Category, blank=True, null=True)
     tags = models.ManyToManyField(Tag, blank=True)
     author = models.ForeignKey(Author, related_name='books')
+
+
+class Language(models.Model):
+    language = models.CharField(max_length=100)
+    book = models.ForeignKey(Book, related_name='languages')
 
 
 class Identifiers(models.Model):
