@@ -1,7 +1,11 @@
 from django.db import models
 
+
 class Genre(models.Model):
     name = models.CharField(max_length=250)
+
+    def __str__(self):
+        return self.name
 
 
 class Author(models.Model):
@@ -13,9 +17,15 @@ class Author(models.Model):
     decease_date = models.DateField(blank=True, null=True)
     avatar = models.ImageField(upload_to='avatar/', blank=True, null=True)
 
+    def __str__(self):
+        return self.name
+
 
 class Category(models.Model):
     name = models.CharField(max_length=250)
+
+    def __str__(self):
+        return self.name
 
     class Meta:
         verbose_name_plural = 'Categories'
@@ -24,9 +34,15 @@ class Category(models.Model):
 class Tag(models.Model):
     title = models.CharField(max_length=250)
 
+    def __str__(self):
+        return self.title
+
 
 class Publisher(models.Model):
     name = models.CharField(max_length=250)
+
+    def __str__(self):
+        return self.name
 
 
 class Book(models.Model):
@@ -38,7 +54,7 @@ class Book(models.Model):
     number_of_pages = models.IntegerField()
     weight = models.IntegerField()
     oclc_number = models.IntegerField()
-    physical_dimensions = models.CharField(max_length=100,blank=True, null=True)
+    physical_dimensions = models.CharField(max_length=100, blank=True, null=True)
     revision = models.IntegerField()
     publishers = models.ForeignKey(Publisher, blank=True, null=True)
     published_date = models.DateField()
@@ -48,10 +64,16 @@ class Book(models.Model):
     tags = models.ManyToManyField(Tag, blank=True)
     author = models.ForeignKey(Author, related_name='books')
 
+    def __str__(self):
+        return self.title
+
 
 class Language(models.Model):
     language = models.CharField(max_length=100)
     book = models.ForeignKey(Book, related_name='languages')
+
+    def __str__(self):
+        return self.language
 
 
 class Identifiers(models.Model):
@@ -59,7 +81,13 @@ class Identifiers(models.Model):
     code = models.CharField(max_length=250)
     book = models.ForeignKey(Book, related_name='identifiers')
 
+    def __str__(self):
+        return self.name
+
 
 class TableOfContent(models.Model):
     title = models.CharField(max_length=250)
     book = models.ForeignKey(Book, related_name='table_of_contents')
+
+    def __str__(self):
+        return self.title
