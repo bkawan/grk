@@ -76,7 +76,7 @@ class Language(models.Model):
         return self.language
 
 
-class Identifiers(models.Model):
+class Identifier(models.Model):
     name = models.CharField(max_length=250)
     code = models.CharField(max_length=250)
     book = models.ForeignKey(Book, related_name='identifiers')
