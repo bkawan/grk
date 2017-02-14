@@ -12,8 +12,8 @@ INSTALLED_APPS = [
 
     'rest_framework',
 
-    'apps.shelf',
-    'apps.users',
+    'grk.apps.shelf',
+    'grk.apps.users',
 ]
 
 MIDDLEWARE = [
@@ -70,6 +70,6 @@ USE_L10N = True
 USE_TZ = True
 
 try:
-    from .local import *
+    from grk.settings.local import *
 except ImportError:
     pass
