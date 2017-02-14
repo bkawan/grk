@@ -60,7 +60,7 @@ class Book(models.Model):
     published_date = models.DateField()
     pagination = models.IntegerField(blank=True, null=True)
     lccn = models.IntegerField()
-    category = models.ForeignKey(Category, blank=True, null=True)
+    category = models.ForeignKey(Category, related_name='books', blank=True, null=True)
     tags = models.ManyToManyField(Tag, blank=True)
     author = models.ForeignKey(Author, related_name='books')
 

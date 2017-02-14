@@ -8,9 +8,18 @@ from .serializers import CategorySerializer, AuthorSerializer, BookSerializer, T
 from .models import Category, Author, Book, Tag, Publisher, Identifier, TableOfContent, Language
 
 
-class CategoryViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
+class CategoryViewSet(mixins.ListModelMixin, mixins.RetrieveModelMixin, viewsets.GenericViewSet):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
+
+    @detail_route()
+    def books(self, request, pk):
+        try:
+            category = get_object_or_404(Category, pk=pk)
+            books = category.books.all()
+            return Response(BookSerializer(books, many=True).data, status=status.HTTP_200_OK)
+        except:
+            return Response({'error': True}, status=status.HTTP_400_BAD_REQUEST)
 
 
 class AuthorViewSet(mixins.ListModelMixin, mixins.RetrieveModelMixin, viewsets.GenericViewSet):

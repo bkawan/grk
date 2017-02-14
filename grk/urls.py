@@ -23,6 +23,7 @@ router = routers.DefaultRouter()
 
 router.register(r'books', shelf_api.BookViewSet)
 router.register(r'authors', shelf_api.AuthorViewSet)
+router.register(r'categories', shelf_api.CategoryViewSet)
 
 
 api_urls = [
