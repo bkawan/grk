@@ -16,13 +16,28 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from django.conf import settings
+from rest_framework import routers
+
+from grk.apps.shelf import api as shelf_api
+router = routers.DefaultRouter()
+
+router.register(r'books', shelf_api.BookViewSet)
+router.register(r'authors', shelf_api.AuthorViewSet)
+
+
+api_urls = [
+        url(r'^api/v1/', include(router.urls)),
+        url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+    ]
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'', include(api_urls)),
 ]
 
 if settings.DEBUG:
     import debug_toolbar
+
     urlpatterns += [
         url(r'^__debug__/', include(debug_toolbar.urls)),
     ]

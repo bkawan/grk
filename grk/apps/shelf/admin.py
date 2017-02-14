@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from grk.apps.shelf.models import Category, Author, Book, Tag, Publisher, Identifier, TableOfContent, Language
+from .models import Category, Author, Book, Tag, Publisher, Identifier, TableOfContent, Language
 
 admin.site.register(Category)
 admin.site.register(Author)
