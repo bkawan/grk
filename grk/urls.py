@@ -32,8 +32,9 @@ api_urls = [
     ]
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
     url(r'', include(api_urls)),
+    url(r'^admin/', admin.site.urls),
+    url(r'^', include('grk.apps.users.urls') )
 ]
 
 if settings.DEBUG:
