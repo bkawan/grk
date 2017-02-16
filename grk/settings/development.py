@@ -44,3 +44,13 @@ AUTH_PASSWORD_VALIDATORS = []
 # FIXME still not working ( according to github discussion
 # FIXME ...it has issue with python3 )
 
+# debug_toolbar settings
+# INSTALLED_APPS += (
+    # 'debug_toolbar',
+# )
+
+# MIDDLEWARE += [
+    # 'debug_toolbar.middleware.DebugToolbarMiddleware',
+# ]
+
+# INTERNAL_IPS = ['127.0.0.1', 'localhost']
